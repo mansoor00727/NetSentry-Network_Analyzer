@@ -40,8 +40,8 @@ jobs:
       - name: Build and push Frontend
         uses: docker/build-push-action@v4
         with:
-          context: ./network-monitor/frontend
-          file: ./network-monitor/frontend/Dockerfile
+          context: ./intelligent-network-website
+          file: ./intelligent-network-website/Dockerfile
           push: true
           tags: |
             ghcr.io/${{ github.repository }}/frontend:latest

@@ -58,11 +58,11 @@ jobs:
           node-version: '20'
       - name: Install Dependencies
         run: |
-          cd network-monitor/frontend
+          cd intelligent-network-website
           npm install
       - name: Build Frontend
         run: |
-          cd network-monitor/frontend
+          cd intelligent-network-website
           npm run build
 
   security-scan:
