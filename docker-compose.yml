@@ -1,0 +1,132 @@
+version: '3.9'
+
+services:
+  # InfluxDB Time-Series Database
+  influxdb:
+    image: influxdb:2.7
+    container_name: ina-influxdb
+    ports:
+      - "${INFLUX_PORT:-8086}:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUX_USER:-admin}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUX_PASSWORD:-adminpass}
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUX_ORG:-network-analyzer}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUX_BUCKET:-network_metrics}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUX_TOKEN:-my-super-secret-auth-token}
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - ./network-monitor/scripts/influxdb_init.sh:/docker-entrypoint-initdb.d/init.sh
+    healthcheck:
+      test: ["CMD", "influx", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - ina_network
+
+  # Redis Cache
+  redis:
+    image: redis:7.4-alpine
+    container_name: ina-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - ina_network
+    command: redis-server --appendonly yes
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./network-monitor
+      dockerfile: Dockerfile
+    container_name: ina-backend
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    environment:
+      DEBUG: ${DEBUG:-false}
+      API_V1_PREFIX: ${API_V1_PREFIX:-/api/v1}
+      INFLUX_URL: http://influxdb:8086
+      INFLUX_TOKEN: ${INFLUX_TOKEN}
+      INFLUX_ORG: ${INFLUX_ORG:-network-analyzer}
+      INFLUX_BUCKET: ${INFLUX_BUCKET:-network_metrics}
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      influxdb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - ina_network
+    volumes:
+      - ./network-monitor/src:/app/src
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./network-monitor/frontend
+      dockerfile: Dockerfile
+    container_name: ina-frontend
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    environment:
+      VITE_API_URL: http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - ina_network
+    volumes:
+      - ./network-monitor/frontend/src:/app/src
+
+  # Prometheus Monitoring
+  prometheus:
+    image: prom/prometheus:v2.45.0
+    container_name: ina-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./network-monitor/scripts/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - ina_network
+    depends_on:
+      - backend
+
+  # Grafana Dashboards
+  grafana:
+    image: grafana/grafana:10.1.0
+    container_name: ina-grafana
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./network-monitor/scripts/grafana_datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+      - ./network-monitor/scripts/grafana_dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml
+      # Map local dashboards dir to container
+      - ./network-monitor/scripts/dashboards:/etc/grafana/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    networks:
+      - ina_network
+    depends_on:
+      - prometheus
+
+volumes:
+  influxdb_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  ina_network:
+    driver: bridge
