@@ -1,8 +1,8 @@
 site_name: NetSentry Docs
-site_url: https://mansoor00727.github.io/intelligent-network-analyzer/
+site_url: https://mansoor00727.github.io/NetSentry-Intelligent-Network-Analyzer/
 site_description: Documentation for Intelligent Network Traffic Analyzer
-repo_url: https://github.com/mansoor00727/intelligent-network-analyzer
-repo_name: intelligent-network-analyzer
+repo_url: https://github.com/mansoor00727/NetSentry-Intelligent-Network-Analyzer
+repo_name: NetSentry-Intelligent-Network-Analyzer
 
 theme:
   name: material
