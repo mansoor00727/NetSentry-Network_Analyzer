@@ -31,7 +31,7 @@ For a detailed guide on architecture, data flow, and operation, please refer to 
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/YOUR_USERNAME/intelligent-network-traffic-analyzer.git
+    git clone https://github.com/mansoor00727/intelligent-network-traffic-analyzer.git
     cd intelligent-network-traffic-analyzer
     ```
 
