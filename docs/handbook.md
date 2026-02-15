@@ -197,7 +197,7 @@ This project supports a hybrid cloud deployment model.
 ### Architecture
 
 *   **Backend**: Hosted on **Google Cloud Run** (Serverless Container).
-*   **Frontend**: Hosted on **Google Cloud Storage** (Static Website).
+*   **Frontend**: Hosted on **Google Cloud Run** (Serverless Container).
 *   **Database**: Users must provide an external InfluxDB instance (e.g., InfluxDB Cloud or a VM).
 
 ### A. Backend Deployment (Cloud Run)
@@ -214,29 +214,28 @@ This project supports a hybrid cloud deployment model.
     *   `INFLUX_ORG` / `INFLUX_BUCKET`: Database details.
     *   `ENABLE_MONITOR`: `false` (Recommended for serverless to save costs/avoid zombie threads).
 
-### B. Frontend Deployment (GCS)
+### B. Frontend Deployment (Cloud Run)
 
-The frontend is exported as a static site and served via a public GCS bucket.
+The frontend is also hosted on Cloud Run to support dynamic features and simplified routing.
 
-1.  **Static Export Config**:
-    `next.config.ts` is configured with:
-    *   `output: 'export'`
-    *   `basePath: '/intelligent-network-website'` (for bucket subdirectory hosting).
+1.  **Containerization**:
+    *   Uses a multistage `Dockerfile` with `node:20-alpine`.
+    *   Configures Next.js for `output: 'standalone'`.
 
 2.  **Deployment Commands**:
     ```bash
-    # Build the project
     cd intelligent-network-website
-    npm run build
-
-    # Upload to GCS
-    gcloud storage cp -r out/* gs://YOUR_BUCKET_NAME/
-
-    # Set Permissions & Metadata
-    gcloud storage buckets add-iam-policy-binding gs://YOUR_BUCKET_NAME --member=allUsers --role=roles/storage.objectViewer
-    gcloud storage objects update "gs://YOUR_BUCKET_NAME/**/*.css" --content-type=text/css
-    gcloud storage objects update "gs://YOUR_BUCKET_NAME/**/*.js" --content-type=application/javascript
+    
+    # Submit Build to Artifact Registry
+    gcloud builds submit --tag us-central1-docker.pkg.dev/netsentry-487419/cloud-run-source-deploy/frontend-nextjs
+    
+    # Deploy Service
+    gcloud run deploy frontend-service \
+      --image us-central1-docker.pkg.dev/netsentry-487419/cloud-run-source-deploy/frontend-nextjs \
+      --platform managed \
+      --region us-central1 \
+      --allow-unauthenticated
     ```
 
 3.  **Access**:
-    The site is available at: `https://storage.googleapis.com/YOUR_BUCKET_NAME/index.html`
+    The site is available at your Cloud Run URL (e.g., `https://frontend-service-....run.app`).
