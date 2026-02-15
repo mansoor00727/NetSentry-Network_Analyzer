@@ -2,8 +2,8 @@
 // In a real app, use NEXT_PUBLIC_API_URL env var
 // For this GCS deployment, we hardcode the Cloud Run URL or fallback to localhost
 
-export const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://backend-nt6dnqkatq-uc.a.run.app";
-export const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "wss://backend-nt6dnqkatq-uc.a.run.app";
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://backend-317032600233.us-central1.run.app";
+export const WS_URL = process.env.NEXT_PUBLIC_WS_URL || "wss://backend-317032600233.us-central1.run.app";
 
 // Helper to construct API endpoints
 export const getApiUrl = (path: string) => {
