@@ -32,5 +32,5 @@ EXPOSE 8000
 
 
 # Run app
-# CMD sh -c "uvicorn src.api:app --host 0.0.0.0 --port ${PORT:-8000}"
-CMD sh -c "uvicorn src.diagnostic:app --host 0.0.0.0 --port ${PORT:-8000}"
+CMD sh -c "uvicorn src.api:app --host 0.0.0.0 --port ${PORT:-8000}"
+# CMD sh -c "uvicorn src.diagnostic:app --host 0.0.0.0 --port ${PORT:-8000}"

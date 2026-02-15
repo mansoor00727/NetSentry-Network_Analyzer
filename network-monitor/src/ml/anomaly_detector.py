@@ -2,8 +2,11 @@
 
 from datetime import datetime
 from typing import Dict, Any, List, Optional, Tuple
+import logging
+import numpy as np
 
 # Imports moved inside methods for lazy loading
+from src.ml.model_registry import ModelRegistry
 # from sklearn... 
 # import tensorflow...
 
