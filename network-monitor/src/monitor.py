@@ -3,6 +3,9 @@ import psutil
 import threading
 import logging
 import asyncio
+import os
+import math
+import random
 from typing import Dict, Any, List, Optional
 from src.database import insert_metric
 # Analyzer will be updated to read from InfluxDB or we pass data? 
@@ -36,10 +39,44 @@ logger = logging.getLogger(__name__)
 
 def collect_metrics() -> List[Dict[str, Any]]:
     """
-    Collect network metrics for all interfaces using psutil.
-    Returns a list of dictionaries, one per interface.
+    Collect network metrics.
+    If DEMO_MODE is true, returns synthetic data.
+    Otherwise, uses psutil for real interfaces.
     """
     metrics = []
+    
+    # Demo Mode: Generate synthetic traffic (Sine wave + Random noise/spikes)
+    if os.getenv("DEMO_MODE", "false").lower() == "true":
+        t = time.time()
+        
+        # Base traffic: Sine wave causing daily/hourly patterns
+        # Period = 60s for demo purposes (usually 24h)
+        base_traffic = 5000 + 4000 * math.sin(2 * math.pi * t / 60)
+        
+        # Random noise
+        noise = random.randint(-500, 2000)
+        
+        # Occasional spikes (simulate bursts)
+        spike = 0
+        if random.random() > 0.95:
+             spike = random.randint(10000, 50000)
+             
+        # Mock Interface "eth0"
+        bytes_total = int(max(0, base_traffic + noise + spike))
+        
+        metrics.append({
+            "interface": "eth0",
+            "bytes_sent": bytes_total,
+            "bytes_recv": int(bytes_total * 1.5), # Download usually > Upload
+            "packets_sent": int(bytes_total / 800),
+            "packets_recv": int(bytes_total * 1.5 / 1200),
+            "err_in": 0 if random.random() > 0.98 else 1,
+            "err_out": 0,
+            "drop_in": 0,
+            "drop_out": 0
+        })
+        return metrics
+
     try:
         # Get IO counters for each interface
         net_io = psutil.net_io_counters(pernic=True)
