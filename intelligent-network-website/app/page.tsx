@@ -32,7 +32,7 @@ export default function Home() {
               </p>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
                 <Button size="lg" asChild className="gap-2">
-                  <Link href="/dashboard">
+                  <Link href="/dashboard/">
                     Live Dashboard <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>

@@ -17,12 +17,12 @@ const Sidebar = () => {
     const logout = () => console.log("Logout clicked");
 
     const navItems = [
-        { to: '/dashboard', icon: LayoutDashboard, label: 'Live Stats' },
-        { to: '/dashboard/analytics', icon: BarChart, label: 'Analytics' },
-        { to: '/dashboard/ml-models', icon: BrainCircuit, label: 'ML Models' },
-        { to: '/dashboard/sources', icon: Server, label: 'Data Sources' },
-        { to: '/dashboard/alerts', icon: Bell, label: 'Alerts' },
-        { to: '/dashboard/history', icon: History, label: 'History' },
+        { to: '/dashboard/', icon: LayoutDashboard, label: 'Live Stats' },
+        { to: '/dashboard/analytics/', icon: BarChart, label: 'Analytics' },
+        { to: '/dashboard/ml-models/', icon: BrainCircuit, label: 'ML Models' },
+        { to: '/dashboard/sources/', icon: Server, label: 'Data Sources' },
+        { to: '/dashboard/alerts/', icon: Bell, label: 'Alerts' },
+        { to: '/dashboard/history/', icon: History, label: 'History' },
     ];
 
     return (

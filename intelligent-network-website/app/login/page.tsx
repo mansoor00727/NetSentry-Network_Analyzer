@@ -48,7 +48,7 @@ export default function LoginPage() {
       document.cookie = `token=${data.access_token}; path=/; max-age=86400; SameSite=Strict`;
 
       // Redirect to dashboard
-      router.push('/dashboard');
+      router.push('/dashboard/');
     } catch (error) {
       console.error(error);
       alert("Login failed: Invalid credentials");
