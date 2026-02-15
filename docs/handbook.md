@@ -237,5 +237,65 @@ The frontend is also hosted on Cloud Run to support dynamic features and simplif
       --allow-unauthenticated
     ```
 
+  --allow-unauthenticated
+    ```
+
 3.  **Access**:
     The site is available at your Cloud Run URL (e.g., `https://frontend-service-....run.app`).
+
+---
+
+## 9. Data Ingestion API
+
+To feed real-time data into the system (e.g., from a remote probe or script), use the `/api/v1/ingest` endpoint.
+
+### Endpoint Details
+*   **URL**: `POST /api/v1/ingest`
+*   **Headers**: 
+    *   `Content-Type: application/json`
+    *   `X-API-Key`: `your_secret_key` (Default: `secret-api-key`, configurable via `API_KEY` env var)
+
+### Payload Format
+The body should be a JSON object with a `metrics` array:
+
+```json
+{
+  "metrics": [
+    {
+      "interface": "eth0",
+      "bytes_sent": 1024,
+      "bytes_recv": 2048,
+      "packets_sent": 10,
+      "packets_recv": 20,
+      "err_in": 0,
+      "err_out": 0,
+      "drop_in": 0,
+      "drop_out": 0,
+      "timestamp": "2023-10-27T10:00:00Z" 
+    }
+  ]
+}
+```
+
+### Example Usage (cURL)
+
+```bash
+curl -X POST "https://backend-SERVICE-URL.run.app/api/v1/ingest" \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: secret-api-key" \
+  -d '{
+    "metrics": [
+      {
+        "interface": "eth0",
+        "bytes_sent": 5000,
+        "bytes_recv": 12000,
+        "packets_sent": 50,
+        "packets_recv": 120,
+        "err_in": 0,
+        "err_out": 0,
+        "drop_in": 0,
+        "drop_out": 0
+      }
+    ]
+  }'
+```
