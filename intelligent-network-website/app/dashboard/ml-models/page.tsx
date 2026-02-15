@@ -6,6 +6,8 @@ import { Brain, CheckCircle, RefreshCw } from 'lucide-react';
 import useNetworkStore from '@/lib/store/useNetworkStore';
 import { motion } from 'framer-motion';
 
+import { getApiUrl } from '@/lib/config';
+
 export default function MLModelsPage() {
     const [models, setModels] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -21,7 +23,7 @@ export default function MLModelsPage() {
             // Checking task summary: 'Changed ... endpoint from /ml/models to /models' 
             // But api router prefix is usually /api/analytics
             // Let's try /api/analytics/models
-            const res = await fetch('/api/analytics/models', {
+            const res = await fetch(getApiUrl('/api/analytics/models'), {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {

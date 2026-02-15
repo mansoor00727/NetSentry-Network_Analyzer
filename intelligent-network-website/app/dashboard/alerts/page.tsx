@@ -7,6 +7,8 @@ import { AlertTriangle, ShieldAlert, CheckCircle, Clock } from 'lucide-react';
 import useNetworkStore from '@/lib/store/useNetworkStore';
 import { cn } from '@/lib/utils';
 
+import { getApiUrl } from '@/lib/config';
+
 export default function AlertsPage() {
     const [alerts, setAlerts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -18,7 +20,7 @@ export default function AlertsPage() {
              try {
                  // Endpoint might be /api/alerts or /api/monitor/alerts depending on backend structure week 4
                  // Let's assume /api/alerts for now based on week 4 verification script
-                 const res = await fetch(`/api/alerts?device_id=${selectedDevice}`, {
+                 const res = await fetch(getApiUrl(`/api/alerts?device_id=${selectedDevice}`), {
                      headers: { 'Authorization': `Bearer ${token}` }
                  });
                  if (res.ok) {

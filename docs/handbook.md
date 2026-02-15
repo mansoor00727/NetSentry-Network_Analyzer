@@ -187,3 +187,56 @@ python3 simulate_traffic.py
 | **ML Tab Empty** | Models not trained or paths incorrect. Run valid traffic to generate training data. |
 | **Dark Mode Not Working** | Older Tailwind versions. Ensure `globals.css` uses HSL variables (Fixed in v2). |
 | **Port 3000 Conflict** | You are running `npm run dev` AND `docker-compose up` simultaneously. Stop one. |
+
+---
+
+## 8. Cloud Deployment Guide
+
+This project supports a hybrid cloud deployment model.
+
+### Architecture
+
+*   **Backend**: Hosted on **Google Cloud Run** (Serverless Container).
+*   **Frontend**: Hosted on **Google Cloud Storage** (Static Website).
+*   **Database**: Users must provide an external InfluxDB instance (e.g., InfluxDB Cloud or a VM).
+
+### A. Backend Deployment (Cloud Run)
+
+1.  **Containerization**:
+    The generic `Dockerfile` is optimized for Cloud Run:
+    *   Uses `PORT` environment variable (default 8000).
+    *   Conditional `ENABLE_MONITOR` flag to disable background monitoring (since Cloud Run scales to zero).
+
+2.  **Configuration**:
+    Set the following environment variables in Cloud Run:
+    *   `INFLUX_URL`: URL of your InfluxDB instance.
+    *   `INFLUX_TOKEN`: Authentication token.
+    *   `INFLUX_ORG` / `INFLUX_BUCKET`: Database details.
+    *   `ENABLE_MONITOR`: `false` (Recommended for serverless to save costs/avoid zombie threads).
+
+### B. Frontend Deployment (GCS)
+
+The frontend is exported as a static site and served via a public GCS bucket.
+
+1.  **Static Export Config**:
+    `next.config.ts` is configured with:
+    *   `output: 'export'`
+    *   `basePath: '/intelligent-network-website'` (for bucket subdirectory hosting).
+
+2.  **Deployment Commands**:
+    ```bash
+    # Build the project
+    cd intelligent-network-website
+    npm run build
+
+    # Upload to GCS
+    gcloud storage cp -r out/* gs://YOUR_BUCKET_NAME/
+
+    # Set Permissions & Metadata
+    gcloud storage buckets add-iam-policy-binding gs://YOUR_BUCKET_NAME --member=allUsers --role=roles/storage.objectViewer
+    gcloud storage objects update "gs://YOUR_BUCKET_NAME/**/*.css" --content-type=text/css
+    gcloud storage objects update "gs://YOUR_BUCKET_NAME/**/*.js" --content-type=application/javascript
+    ```
+
+3.  **Access**:
+    The site is available at: `https://storage.googleapis.com/YOUR_BUCKET_NAME/index.html`

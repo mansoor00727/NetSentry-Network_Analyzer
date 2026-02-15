@@ -9,17 +9,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import RealTimeChart from '@/components/dashboard/RealTimeChart';
 import { motion } from "framer-motion";
 
+import { WS_URL } from '@/lib/config';
+
 export default function DashboardPage() {
     // Connect to WebSocket
-    // Note: In Next.js dev mode, localhost:3000 -> localhost:8000 via rewrite proxy.
-    // WS protocol needs explicit handling usually, but for now let's try WS to localhost:8000 directly
-    // or use window.location.host logic if proxied.
-    // For local dev with docker, use direct port 8000.
+    // Use configured WS_URL from lib/config
     const [wsUrl, setWsUrl] = useState<string | null>(null);
 
     useEffect(() => {
         // Run only on client
-        setWsUrl("ws://localhost:8000/ws");
+        setWsUrl(`${WS_URL}/ws`);
     }, []);
 
     const { isConnected } = useWebSocket(wsUrl || "");

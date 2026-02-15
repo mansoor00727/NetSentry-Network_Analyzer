@@ -30,13 +30,13 @@ async def lifespan(app: FastAPI):
         # Pass manager to monitor so it can broadcast
         loop = asyncio.get_running_loop()
         stop_event = start_monitor(interval=1, ws_manager=manager, main_loop=loop)
+        
+        # Start scheduler only if monitoring is enabled
+        from src.scheduler.scheduler import scheduler
+        scheduler.start()
     else:
-        logger.info("Network monitor disabled via ENABLE_MONITOR env var")
+        logger.info("Network monitor and scheduler disabled via ENABLE_MONITOR env var")
 
-    # Start scheduler
-    from src.scheduler.scheduler import scheduler
-    scheduler.start()
-    
     yield
     
     # Shutdown
@@ -65,6 +65,10 @@ app.add_middleware(
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
+
+@app.get("/")
+def root():
+    return {"status": "ok", "service": "network-monitor-backend"}
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):

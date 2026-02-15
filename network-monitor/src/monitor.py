@@ -30,9 +30,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Global ML components
-registry = ModelRegistry()
-detector = AnomalyDetector(registry)
+# Global ML components - REMOVED to allow lazy loading
+# registry = ModelRegistry()
+# detector = AnomalyDetector(registry)
 
 def collect_metrics() -> List[Dict[str, Any]]:
     """
@@ -70,6 +70,16 @@ def monitor_loop(interval: int, stop_event: threading.Event, ws_manager: Optiona
     """
     logger.info(f"Starting network monitor (interval={interval}s)...")
     
+    # Initialize ML components here to avoid startup overhead/crashes
+    try:
+        registry = ModelRegistry()
+        detector = AnomalyDetector(registry)
+        logger.info("ML components initialized successfully.")
+    except Exception as e:
+        logger.error(f"Failed to initialize ML components: {e}")
+        # Continue without ML if it fails (e.g. read-only FS)
+        detector = None
+
     # We are in a separate thread. The WebSockets are bound to the main loop.
     # We must schedule broadcast on the main loop.
     
@@ -104,7 +114,7 @@ def monitor_loop(interval: int, stop_event: threading.Event, ws_manager: Optiona
                 iface = m["interface"]
                 prev = prev_metrics.get(iface)
                 
-                if prev:
+                if prev and detector:
                     # ML Prediction
                     try:
                         ml_result = detector.predict(m, prev)

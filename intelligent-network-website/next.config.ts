@@ -1,22 +1,18 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
-  output: 'standalone', // Changed from 'export' to support rewrites/proxy
+  output: 'export', // Static export for GCS
+  // GCS bucket path fixes
+  basePath: isProd ? '/intelligent-network-website' : '',
+  assetPrefix: isProd ? '/intelligent-network-website' : '',
+  trailingSlash: true, // Creates folders for pages (e.g. /login -> /login/index.html)
+  
   images: {
     unoptimized: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'http://localhost:8000/api/:path*', // Proxy to FastAPI backend
-      },
-      {
-        source: '/ws/:path*',
-        destination: 'http://localhost:8000/ws/:path*', // Proxy WebSocket (though client usually connects directly)
-      },
-    ];
-  },
+  // rewrites() are not supported in static export
 };
 
 export default nextConfig;

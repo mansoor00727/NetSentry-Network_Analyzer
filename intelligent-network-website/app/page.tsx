@@ -50,7 +50,7 @@ export default function Home() {
               <img
                 alt="Network Visualization"
                 className="h-full w-full object-cover"
-                src="https://images.unsplash.com/photo-1558494949-efc02570fbc9?q=80&w=2070&auto=format&fit=crop"
+                src="/intelligent-network-website/dashboard-preview.png"
               />
             </motion.div>
           </div>

@@ -10,26 +10,24 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import useNetworkStore from '@/lib/store/useNetworkStore';
 
+import { getApiUrl } from '@/lib/config';
+
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  // const { toast } = useToast(); 
-  
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      // Use the proxy /api/token -> http://localhost:8000/token
-      // The backend expects form-data for OAuth2 usually, but let's check api.py 
-      // api.py likely uses OAuth2PasswordRequestForm
       const formData = new URLSearchParams();
       formData.append('username', username);
       formData.append('password', password);
 
-      const res = await fetch('/api/token', {
+      const res = await fetch(getApiUrl('/api/token'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

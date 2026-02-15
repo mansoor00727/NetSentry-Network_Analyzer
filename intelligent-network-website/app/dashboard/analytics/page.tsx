@@ -7,6 +7,8 @@ import { Network, AlertTriangle, Activity } from 'lucide-react';
 import useNetworkStore from '@/lib/store/useNetworkStore';
 import { motion } from 'framer-motion';
 
+import { getApiUrl } from '@/lib/config';
+
 export default function AnalyticsPage() {
     const { token, selectedDevice } = useNetworkStore();
     const [timeRange, setTimeRange] = useState(1);
@@ -20,7 +22,7 @@ export default function AnalyticsPage() {
             setLoading(true);
             try {
                 // Fetch Summary
-                const summaryRes = await fetch(`/api/analytics/summary?days=${timeRange}&device_id=${selectedDevice}`, {
+                const summaryRes = await fetch(getApiUrl(`/api/analytics/summary?days=${timeRange}&device_id=${selectedDevice}`), {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (summaryRes.ok) {
@@ -29,7 +31,7 @@ export default function AnalyticsPage() {
                 }
 
                 // Fetch Trend
-                const trendRes = await fetch(`/api/analytics/trend?days=${timeRange}&device_id=${selectedDevice}`, {
+                const trendRes = await fetch(getApiUrl(`/api/analytics/trend?days=${timeRange}&device_id=${selectedDevice}`), {
                      headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (trendRes.ok) {

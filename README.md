@@ -4,12 +4,15 @@ A real-time network monitoring and anomaly detection system that leverages Machi
 
 ![Dashboard Preview](docs/dashboard-preview.png)
 
+> **[🔴 View Live Demo](https://storage.googleapis.com/intelligent-network-website/index.html)** (Login: `admin` / `admin`)
+
 ## 🚀 Key Features
 
 - **Real-Time Monitoring**: Live visualization of network traffic (Bytes/sec, Packets/sec).
 - **ML-Powered Anomaly Detection**: Uses Isolation Forest and Autoencoder models to detect unusual traffic patterns (e.g., DDOS, intrusion attempts).
 - **Interactive Dashboard**: Built with Next.js and Recharts, offering historical analytics (24h, 7d, 30d) and instant alerts.
 - **Microservices Architecture**: Containerized with Docker, featuring a FastAPI backend and InfluxDB for time-series data storage.
+- **Cloud Ready**: Deploys seamlessly to Google Cloud Run (Backend) and Google Cloud Storage (Frontend).
 
 ## 📚 Documentation
 

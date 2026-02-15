@@ -1,47 +1,48 @@
-import numpy as np
-import pandas as pd
-import joblib
-import os
-import logging
-import json
+# Unused imports removed
+
 from datetime import datetime
 from typing import Dict, Any, List, Optional, Tuple
 
-try:
-    from sklearn.ensemble import IsolationForest
-    from sklearn.preprocessing import MinMaxScaler
-    SKLEARN_AVAILABLE = True
-except ImportError:
-    SKLEARN_AVAILABLE = False
-    print("scikit-learn not available. ML features will be disabled.")
+# Imports moved inside methods for lazy loading
+# from sklearn... 
+# import tensorflow...
 
-from .feature_engineering import calculate_features
-from .model_registry import ModelRegistry
-
-# Try importing tensorflow, handle if missing for lightweight envs
-try:
-    import tensorflow as tf
-    from tensorflow.keras.models import Model, Sequential, load_model
-    from tensorflow.keras.layers import Input, Dense
-    TF_AVAILABLE = True
-except ImportError:
-    TF_AVAILABLE = False
-    print("TensorFlow not available. Autoencoder will be disabled.")
+SKLEARN_AVAILABLE = False
+TF_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 
 class AnomalyDetector:
     def __init__(self, registry: ModelRegistry):
         self.registry = registry
-        if SKLEARN_AVAILABLE:
-            self.scaler = MinMaxScaler()
-        else:
-            self.scaler = None
         
+        # Lazy import Scikit-Learn
+        self.sklearn_available = False
+        self.scaler = None
         self.iso_forest = None
+        try:
+            global IsolationForest, MinMaxScaler
+            from sklearn.ensemble import IsolationForest
+            from sklearn.preprocessing import MinMaxScaler
+            self.sklearn_available = True
+            self.scaler = MinMaxScaler()
+        except ImportError:
+            logger.warning("scikit-learn not available. ML features will be disabled.")
+
+        # Lazy import TensorFlow
+        self.tf_available = False
         self.autoencoder = None
+        try:
+            global tf, Model, Sequential, load_model, Input, Dense
+            import tensorflow as tf
+            from tensorflow.keras.models import Model, Sequential, load_model
+            from tensorflow.keras.layers import Input, Dense
+            self.tf_available = True
+        except ImportError:
+            logger.warning("TensorFlow not available. Autoencoder will be disabled.")
+            
         self.iso_threshold = -0.5
-        self.ae_threshold = 0.5 # Mean reconstruction error threshold (dynamic)
+        self.ae_threshold = 0.5 
         
         # Load existing models if available
         self.load_models()
@@ -49,13 +50,13 @@ class AnomalyDetector:
     def load_models(self):
         """Load latest models from registry."""
         try:
-            if SKLEARN_AVAILABLE:
+            if self.sklearn_available:
                 self.iso_forest, _ = self.registry.load_model("isolation_forest", "latest")
                 logger.info("Loaded Isolation Forest model.")
         except Exception:
             logger.info("No Isolation Forest model found. Need training.")
             
-        if TF_AVAILABLE:
+        if self.tf_available:
             try:
                 self.autoencoder, meta = self.registry.load_model("autoencoder", "latest")
                 self.ae_threshold = meta.get("threshold", 0.1)
@@ -69,7 +70,7 @@ class AnomalyDetector:
             logger.warning("No data validation for training.")
             return
 
-        if not SKLEARN_AVAILABLE:
+        if not self.sklearn_available:
             logger.warning("scikit-learn not available. Skipping training.")
             return
 
@@ -110,7 +111,7 @@ class AnomalyDetector:
         )
         
         # 2. Train Autoencoder
-        if TF_AVAILABLE:
+        if self.tf_available:
             logger.info("Training Autoencoder...")
             input_dim = X_train.shape[1]
             
@@ -154,7 +155,7 @@ class AnomalyDetector:
         Predict anomaly on new data point.
         Returns detailed result dict.
         """
-        if not SKLEARN_AVAILABLE or not self.iso_forest or (TF_AVAILABLE and not self.autoencoder):
+        if not self.sklearn_available or not self.iso_forest or (self.tf_available and not self.autoencoder):
             return {"is_anomaly": False, "reason": "Models not trained or libraries missing"}
             
         # Calculate features for single point
@@ -210,7 +211,7 @@ class AnomalyDetector:
         # 2. Autoencoder
         ae_anomaly = False
         ae_loss = 0.0
-        if TF_AVAILABLE and self.autoencoder:
+        if self.tf_available and self.autoencoder:
             recon = self.autoencoder.predict(X, verbose=0)
             ae_loss = np.mean(np.power(X - recon, 2))
             ae_anomaly = ae_loss > self.ae_threshold

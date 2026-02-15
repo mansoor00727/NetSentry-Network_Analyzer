@@ -6,6 +6,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Download, Filter, Calendar } from 'lucide-react';
 import useNetworkStore from '@/lib/store/useNetworkStore';
 
+import { getApiUrl } from '@/lib/config';
+
 export default function HistoryPage() {
     const [history, setHistory] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -16,7 +18,7 @@ export default function HistoryPage() {
              if (!token) return;
              try {
                  // Endpoint /api/history
-                 const res = await fetch(`/api/history?device_id=${selectedDevice}`, {
+                 const res = await fetch(getApiUrl(`/api/history?device_id=${selectedDevice}`), {
                      headers: { 'Authorization': `Bearer ${token}` }
                  });
                  if (res.ok) {
