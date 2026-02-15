@@ -1,0 +1,1441 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for Intelligent Network Traffic Analyzer">
+      
+      
+      
+        <link rel="canonical" href="https://mansoor00727.github.io/NetSentry-Network_Analyzer/handbook/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Project Handbook - NetSentry Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#intelligent-network-traffic-analyzer-project-handbook" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NetSentry Docs" class="md-header__button md-logo" aria-label="NetSentry Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NetSentry Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Project Handbook
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mansoor00727/NetSentry-Network_Analyzer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NetSentry-Network_Analyzer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Project Handbook
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NetSentry Docs" class="md-nav__button md-logo" aria-label="NetSentry Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    NetSentry Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mansoor00727/NetSentry-Network_Analyzer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NetSentry-Network_Analyzer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Handbook
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Handbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Architecture Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Architecture Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-key-features-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Key Features &amp; Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Key Features &amp; Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-real-time-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Real-Time Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-machine-learning-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Machine Learning Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-analytics-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Analytics Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-project-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Project Directory Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-operation-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Operation Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Operation Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulating-network-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulating Network Traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cloud-deployment-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cloud Deployment Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Cloud Deployment Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-backend-deployment-cloud-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Backend Deployment (Cloud Run)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-frontend-deployment-cloud-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Frontend Deployment (Cloud Run)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-data-ingestion-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Data Ingestion API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Data Ingestion API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payload-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Payload Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-usage-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage (cURL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-live-demo-mide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Live Demo Mide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Live Demo Mide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Executive Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Architecture Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Architecture Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-key-features-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Key Features &amp; Implementation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Key Features &amp; Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-real-time-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Real-Time Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-machine-learning-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Machine Learning Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-analytics-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Analytics Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-project-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Project Directory Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-operation-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Operation Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Operation Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-the-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulating-network-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulating Network Traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cloud-deployment-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cloud Deployment Guide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Cloud Deployment Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-backend-deployment-cloud-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Backend Deployment (Cloud Run)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-frontend-deployment-cloud-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Frontend Deployment (Cloud Run)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-data-ingestion-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Data Ingestion API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Data Ingestion API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payload-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Payload Format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-usage-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage (cURL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-live-demo-mide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Live Demo Mide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Live Demo Mide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="intelligent-network-traffic-analyzer-project-handbook">Intelligent Network Traffic Analyzer - Project Handbook</h1>
+<h2 id="1-executive-summary">1. Executive Summary</h2>
+<p>The <strong>Intelligent Network Traffic Analyzer</strong> is a real-time monitoring and anomaly detection system designed to inspect network traffic, visualize key metrics, and use Machine Learning to identify security threats. </p>
+<p>Built with a modern stack (Next.js, FastAPI, InfluxDB), it provides a responsive dashboard for network administrators to oversee traffic patterns, view historical data, and receive alerts for potential DDOS or intrusion attempts.</p>
+<hr />
+<h2 id="2-architecture-overview">2. Architecture Overview</h2>
+<p>The system follows a microservices-based architecture, containerized with Docker.</p>
+<pre class="mermaid"><code>graph TD
+    User["User / Browser"] -- "HTTP/WebSocket" --&gt; Frontend["Next.js Frontend&lt;br&gt;(Port 3000)"]
+    User -- "HTTP" --&gt; BackendAPI["FastAPI Backend&lt;br&gt;(Port 8000)"]
+
+    subgraph "Backend Services"
+        BackendAPI
+        Monitor["Network Monitor&lt;br&gt;(Background Thread)"]
+        Analyzer["ML Analyzer&lt;br&gt;(Scikit-learn)"]
+        Scheduler["Task Scheduler"]
+    end
+
+    subgraph "Data Storage"
+        InfluxDB[("InfluxDB&lt;br&gt;Time-Series")]
+        Redis[("Redis&lt;br&gt;Cache/Queue")]
+    end
+
+    Monitor -- "Raw Metrics" --&gt; InfluxDB
+    Monitor -- "Broadcast" --&gt; Frontend
+    Monitor -- "Check Anomaly" --&gt; Analyzer
+    Analyzer -- "Load Models" --&gt; Redis
+    BackendAPI -- "Query Data" --&gt; InfluxDB
+    BackendAPI -- "Auth/Cache" --&gt; Redis</code></pre>
+<h3 id="component-breakdown">Component Breakdown</h3>
+<ol>
+<li><strong>Frontend (Next.js 14)</strong>: A React-based UI using Tailwind CSS and Recharts for visualization. It connects to the backend via REST API (for history/auth) and WebSocket (for real-time updates).</li>
+<li><strong>Backend (FastAPI)</strong>: Python-based API server. It handles:<ul>
+<li><strong>Traffic Monitoring</strong>: Uses <code>psutil</code> to read network interface counters.</li>
+<li><strong>Data Ingestion</strong>: Writes metrics to InfluxDB.</li>
+<li><strong>ML Analysis</strong>: Runs Isolation Forest and Autoencoder models to detect anomalies.</li>
+<li><strong>WebSocket Manager</strong>: Broadcasts live data to connected clients.</li>
+</ul>
+</li>
+<li><strong>Database (InfluxDB)</strong>: High-performance time-series database optimized for storing timestamped network metrics (bytes, packets, errors).</li>
+<li><strong>Cache (Redis)</strong>: Used for caching high-frequency data and potentially message parameters.</li>
+<li><strong>Monitoring (Prometheus + Grafana)</strong>: Optional sidecars for self-monitoring the application's performance.</li>
+</ol>
+<hr />
+<h2 id="3-data-flow">3. Data Flow</h2>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Net as Network Interface
+    participant Mon as Monitor Service
+    participant DB as InfluxDB
+    participant ML as ML Engine
+    participant WS as WebSocket
+    participant UI as Dashboard
+
+    loop Every 1 Second
+        Net-&gt;&gt;Mon: Read Bytes/Packets
+        Mon-&gt;&gt;DB: Write Metrics
+        Mon-&gt;&gt;ML: Analyze Traffic Pattern
+        alt Anomaly Detected
+            ML--&gt;&gt;Mon: Alert (Critical/High)
+            Mon-&gt;&gt;DB: Write Alert
+        end
+        Mon-&gt;&gt;WS: Broadcast Update
+        WS--&gt;&gt;UI: Push Real-time Data
+    end
+
+    UI-&gt;&gt;UI: Update Charts &amp; Stats</code></pre>
+<hr />
+<h2 id="4-key-features-implementation">4. Key Features &amp; Implementation</h2>
+<h3 id="a-real-time-dashboard">A. Real-Time Dashboard</h3>
+<ul>
+<li><strong>Tech</strong>: Next.js, Framer Motion, Recharts.</li>
+<li><strong>Location</strong>: <code>intelligent-network-website/app/dashboard</code></li>
+<li><strong>Key Files</strong>: <ul>
+<li><code>LiveStatsCard.tsx</code>: Displays instant metrics (Bytes/sec, PPS).</li>
+<li><code>RealTimeChart.tsx</code>: Rolling window chart of traffic volume.</li>
+<li><code>useWebSocket.ts</code>: Custom hook managing the WS connection.</li>
+</ul>
+</li>
+</ul>
+<h3 id="b-machine-learning-engine">B. Machine Learning Engine</h3>
+<ul>
+<li><strong>Tech</strong>: Scikit-learn, Joblib.</li>
+<li><strong>Models</strong>:<ul>
+<li><strong>Isolation Forest</strong>: Unsupervised outlier detection.</li>
+<li><strong>Autoencoder</strong>: Neural network-based reconstruction error detection.</li>
+</ul>
+</li>
+<li><strong>Location</strong>: <code>network-monitor/src/ml</code></li>
+<li><strong>Implementation</strong>: Models are trained on historical data and serialized to disk. The <code>AnomalyDetector</code> class loads them to score incoming traffic in real-time.</li>
+</ul>
+<h3 id="c-analytics-engine">C. Analytics Engine</h3>
+<ul>
+<li><strong>Tech</strong>: InfluxDB Flux Queries.</li>
+<li><strong>Feature</strong>: Aggregates data over 24h, 7d, or 30d windows.</li>
+<li><strong>Optimizations</strong>: Uses InfluxDB's <code>spread()</code> and <code>sum()</code> functions to efficiently calculate total volume from cumulative counters.</li>
+</ul>
+<h3 id="d-authentication">D. Authentication</h3>
+<ul>
+<li><strong>Tech</strong>: OAuth2 with Password Flow (FastAPI).</li>
+<li><strong>Credentials</strong>: <code>admin</code> / <code>password</code>.</li>
+<li><strong>Security</strong>: Returns a JWT (Bearer token) used to secure API endpoints.</li>
+</ul>
+<hr />
+<h2 id="5-project-directory-structure">5. Project Directory Structure</h2>
+<div class="highlight"><pre><span></span><code>Intelligent Network Traffic Analyzer/
+├── docker-compose.yml       # Orchestration for all services
+├── network-monitor/         # Backend Service
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── simulate_traffic.py  # Simulation Tool
+│   └── src/
+│       ├── api.py           # Main Application Entrypoint
+│       ├── monitor.py       # Background Traffic Monitor
+│       ├── database.py      # InfluxDB Interactions
+│       ├── ml/              # Machine Learning Modules
+│       │   ├── anomaly_detector.py
+│       │   └── models/      # Serialized Model Files
+│       └── ...
+└── intelligent-network-website/  # Frontend Service
+    ├── package.json
+    ├── tailwind.config.ts
+    ├── app/
+    │   ├── page.tsx         # Landing Page
+    │   ├── login/           # Login Page
+    │   └── dashboard/       # Protected Dashboard Area
+    │       ├── analytics/
+    │       ├── ml-models/
+    │       └── alerts/
+    └── components/          # Reusable UI Components
+</code></pre></div>
+<hr />
+<h2 id="6-operation-guide">6. Operation Guide</h2>
+<h3 id="running-the-application">Running the Application</h3>
+<p><strong>Option A: Full Docker (Recommended for Prod)</strong>
+This runs the database, backend, and a production build of the frontend.
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</code></pre></div>
+<em>Access at: http://localhost:3000</em></p>
+<p><strong>Option B: Hybrid Dev Mode (Recommended for Development)</strong>
+Run the backend in Docker (for database dependencies) and frontend locally.</p>
+<ol>
+<li><strong>Start Backend Services</strong>:
+    <div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>influxdb<span class="w"> </span>redis<span class="w"> </span>backend
+</code></pre></div></li>
+<li><strong>Start Frontend</strong>:
+    <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>intelligent-network-website
+npm<span class="w"> </span>install
+npm<span class="w"> </span>run<span class="w"> </span>dev
+</code></pre></div>
+<em>Access at: http://localhost:3000</em></li>
+</ol>
+<h3 id="simulating-network-traffic">Simulating Network Traffic</h3>
+<p>To test the ML alerts, use the included Python script to generate traffic bursts.</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># From the project root</span>
+<span class="nb">cd</span><span class="w"> </span>network-monitor
+python3<span class="w"> </span>simulate_traffic.py
+</code></pre></div>
+*   <strong>Option 1</strong>: Normal Traffic (10 req/s) - Good for baseline.
+*   <strong>Option 2</strong>: High Traffic Spike (100 req/s) - Triggers "High Traffic" alerts.
+*   <strong>Option 3</strong>: Anomaly (500 req/s) - Triggers ML-based "Critical" alerts.</p>
+<hr />
+<h2 id="7-troubleshooting">7. Troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Issue</th>
+<th style="text-align: left;">Logic / Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>"System Offline" / WebSocket Error</strong></td>
+<td style="text-align: left;">Backend is not running or port 8000 is blocked. Check <code>docker ps</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>ML Tab Empty</strong></td>
+<td style="text-align: left;">Models not trained or paths incorrect. Run valid traffic to generate training data.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dark Mode Not Working</strong></td>
+<td style="text-align: left;">Older Tailwind versions. Ensure <code>globals.css</code> uses HSL variables (Fixed in v2).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Port 3000 Conflict</strong></td>
+<td style="text-align: left;">You are running <code>npm run dev</code> AND <code>docker-compose up</code> simultaneously. Stop one.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-cloud-deployment-guide">8. Cloud Deployment Guide</h2>
+<p>This project supports a hybrid cloud deployment model.</p>
+<h3 id="architecture">Architecture</h3>
+<ul>
+<li><strong>Backend</strong>: Hosted on <strong>Google Cloud Run</strong> (Serverless Container).</li>
+<li><strong>Frontend</strong>: Hosted on <strong>Google Cloud Run</strong> (Serverless Container).</li>
+<li><strong>Database</strong>: Users must provide an external InfluxDB instance (e.g., InfluxDB Cloud or a VM).</li>
+</ul>
+<h3 id="a-backend-deployment-cloud-run">A. Backend Deployment (Cloud Run)</h3>
+<ol>
+<li>
+<p><strong>Containerization</strong>:
+    The generic <code>Dockerfile</code> is optimized for Cloud Run:</p>
+<ul>
+<li>Uses <code>PORT</code> environment variable (default 8000).</li>
+<li>Conditional <code>ENABLE_MONITOR</code> flag to disable background monitoring (since Cloud Run scales to zero).</li>
+</ul>
+</li>
+<li>
+<p><strong>Configuration</strong>:
+    Set the following environment variables in Cloud Run:</p>
+<ul>
+<li><code>INFLUX_URL</code>: URL of your InfluxDB instance.</li>
+<li><code>INFLUX_TOKEN</code>: Authentication token.</li>
+<li><code>INFLUX_ORG</code> / <code>INFLUX_BUCKET</code>: Database details.</li>
+<li><code>ENABLE_MONITOR</code>: <code>false</code> (Recommended for serverless to save costs/avoid zombie threads).</li>
+</ul>
+</li>
+</ol>
+<h3 id="b-frontend-deployment-cloud-run">B. Frontend Deployment (Cloud Run)</h3>
+<p>The frontend is also hosted on Cloud Run to support dynamic features and simplified routing.</p>
+<ol>
+<li>
+<p><strong>Containerization</strong>:</p>
+<ul>
+<li>Uses a multistage <code>Dockerfile</code> with <code>node:20-alpine</code>.</li>
+<li>Configures Next.js for <code>output: 'standalone'</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Deployment Commands</strong>:
+    <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>intelligent-network-website
+
+<span class="c1"># Submit Build to Artifact Registry</span>
+gcloud<span class="w"> </span>builds<span class="w"> </span>submit<span class="w"> </span>--tag<span class="w"> </span>us-central1-docker.pkg.dev/netsentry-487419/cloud-run-source-deploy/frontend-nextjs
+
+<span class="c1"># Deploy Service</span>
+gcloud<span class="w"> </span>run<span class="w"> </span>deploy<span class="w"> </span>frontend-service<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--image<span class="w"> </span>us-central1-docker.pkg.dev/netsentry-487419/cloud-run-source-deploy/frontend-nextjs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--platform<span class="w"> </span>managed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--region<span class="w"> </span>us-central1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--allow-unauthenticated
+</code></pre></div></p>
+</li>
+</ol>
+<p>--allow-unauthenticated
+    ```</p>
+<ol>
+<li><strong>Access</strong>:
+    The site is available at your Cloud Run URL (e.g., <code>https://frontend-service-....run.app</code>).</li>
+</ol>
+<hr />
+<h2 id="9-data-ingestion-api">9. Data Ingestion API</h2>
+<p>To feed real-time data into the system (e.g., from a remote probe or script), use the <code>/api/v1/ingest</code> endpoint.</p>
+<h3 id="endpoint-details">Endpoint Details</h3>
+<ul>
+<li><strong>URL</strong>: <code>POST /api/v1/ingest</code></li>
+<li><strong>Headers</strong>: <ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-API-Key</code>: <code>your_secret_key</code> (Default: <code>secret-api-key</code>, configurable via <code>API_KEY</code> env var)</li>
+</ul>
+</li>
+</ul>
+<h3 id="payload-format">Payload Format</h3>
+<p>The body should be a JSON object with a <code>metrics</code> array:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;metrics&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;interface&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eth0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;bytes_sent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;bytes_recv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;packets_sent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;packets_recv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;err_in&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;err_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;drop_in&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;drop_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-10-27T10:00:00Z&quot;</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="example-usage-curl">Example Usage (cURL)</h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://backend-SERVICE-URL.run.app/api/v1/ingest&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-API-Key: secret-api-key&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;metrics&quot;: [</span>
+<span class="s1">      {</span>
+<span class="s1">        &quot;interface&quot;: &quot;eth0&quot;,</span>
+<span class="s1">        &quot;bytes_sent&quot;: 5000,</span>
+<span class="s1">        &quot;bytes_recv&quot;: 12000,</span>
+<span class="s1">        &quot;packets_sent&quot;: 50,</span>
+<span class="s1">        &quot;packets_recv&quot;: 120,</span>
+<span class="s1">        &quot;err_in&quot;: 0,</span>
+<span class="s1">        &quot;err_out&quot;: 0,</span>
+<span class="s1">        &quot;drop_in&quot;: 0,</span>
+<span class="s1">        &quot;drop_out&quot;: 0</span>
+<span class="s1">      }</span>
+<span class="s1">    ]</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<hr />
+<h2 id="10-live-demo-mide">10. Live Demo Mide</h2>
+<p>To showcase the dashboard without connecting real probes, the backend supports a <strong>Demo Mode</strong>.</p>
+<h3 id="configuration">Configuration</h3>
+<p>Set the environment variable <code>DEMO_MODE=true</code> in your backend deployment (e.g., Cloud Run).</p>
+<h3 id="behavior">Behavior</h3>
+<ul>
+<li>Disables <code>psutil</code> system monitoring.</li>
+<li>Generates synthetic sine-wave traffic patterns for a mock <code>eth0</code> interface.</li>
+<li>Creates random traffic spikes and "errors" to demonstrate anomaly detection and alerts.</li>
+<li>Perfect for public-facing demos where the underlying server's actual traffic (which might be zero) is uninteresting.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
