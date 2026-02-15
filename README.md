@@ -4,7 +4,7 @@ A real-time network monitoring and anomaly detection system that leverages Machi
 
 ![Dashboard Preview](docs/dashboard-preview.png)
 
-> **[🔴 View Live Demo](https://storage.googleapis.com/intelligent-network-website/index.html)** (Login: `admin` / `admin`)
+> **[🔴 View Live Demo](https://frontend-service-317032600233.us-central1.run.app/)** (Login: `admin` / `admin`)
 
 ## 🚀 Key Features
 
