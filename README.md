@@ -16,7 +16,7 @@ A real-time network monitoring and anomaly detection system that leverages Machi
 
 ## 📚 Documentation
 
-For a detailed guide on architecture, data flow, and operation, please refer to the [Project Handbook](PROJECT_HANDBOOK.md).
+For a detailed guide on architecture, data flow, and operation, please refer to the [Project Handbook](handbook.md).
 
 ## 🛠️ Tech Stack
 
