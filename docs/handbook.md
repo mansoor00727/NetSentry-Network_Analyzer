@@ -299,3 +299,19 @@ curl -X POST "https://backend-SERVICE-URL.run.app/api/v1/ingest" \
     ]
   }'
 ```
+
+---
+
+## 10. Live Demo Mide
+
+To showcase the dashboard without connecting real probes, the backend supports a **Demo Mode**.
+
+### Configuration
+Set the environment variable `DEMO_MODE=true` in your backend deployment (e.g., Cloud Run).
+
+### Behavior
+- Disables `psutil` system monitoring.
+- Generates synthetic sine-wave traffic patterns for a mock `eth0` interface.
+- Creates random traffic spikes and "errors" to demonstrate anomaly detection and alerts.
+- Perfect for public-facing demos where the underlying server's actual traffic (which might be zero) is uninteresting.
+
